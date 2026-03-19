@@ -26,9 +26,43 @@ To implement MESSAGE AUTHENTICATION CODE(MAC)
 
 ## Program:
 
+```
+import hashlib
 
+# Function to generate MAC
+def generate_mac(message, key):
+    # Combine key and message
+    data = key + message
+    
+    # Create SHA-256 hash
+    mac = hashlib.sha256(data.encode()).hexdigest()
+    
+    return mac
+
+# Input
+message = input("Enter message: ")
+key = input("Enter secret key: ")
+
+# Generate MAC
+mac = generate_mac(message, key)
+
+print("Generated MAC:", mac)
+
+# Verification
+recv_message = input("\nEnter received message: ")
+recv_mac = input("Enter received MAC: ")
+
+# Recompute MAC
+new_mac = generate_mac(recv_message, key)
+
+if new_mac == recv_mac:
+    print("Message is Authentic ✅")
+else:
+    print("Message is Tampered ❌")
+```
 
 ## Output:
+<img width="1659" height="755" alt="image" src="https://github.com/user-attachments/assets/0a2da779-7304-451c-8dfa-c8682f9b58ad" />
 
 
 ## Result:
